@@ -1,0 +1,75 @@
+.shiny-text {
+  position: relative;
+  display: inline-block;
+  color: black; /* Default color when shimmer isn't visible */
+  font-size: 16px; /* Adjust font size as needed */
+  font-weight:500; /* Adjust font weight as needed */
+  z-index: 0;
+}
+
+/* Overlay shimmer using a pseudo-element */
+.shiny-text::after {
+  content: attr(data-text); /* Copy the text for shimmer */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: transparent;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #8b5cf6,
+    #38bdf8,
+    transparent
+  );
+  background-size: 80px 100%;
+  background-repeat: no-repeat;
+  background-position: -80px 0;
+
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: shimmer 2.5s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -80px 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
+
+
+
+.hero-section {
+  position: relative;
+  background: radial-gradient(ellipse 80% 60% at center, #3b82f6 0%, #93c5fd 40%, #e0f2fe 70%, #f8fafc 100%);
+  overflow: hidden;
+  padding: 4rem 1rem;
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(circle, rgba(59,130,246,0.4) 0%, rgba(147,197,253,0.2) 60%, transparent 100%);
+  filter: blur(80px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
